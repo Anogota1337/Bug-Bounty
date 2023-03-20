@@ -1,0 +1,85 @@
+Skupimy się tutaj na podstawowych narzędziach związanyc z rozpoznaniem pasywnym. Będą tutaj przedstawione trzy narzędzia wiersza poleceń
+  whois - służy do wysłania zapytań do serwera.
+  nslookup - służy do wysłania zapytań do serwerów DNS
+  dig - służy do wysłania zapytań do serwerów DNS
+
+
+    Passive Versus Active Recon
+ 
+Rekonesans pasywny opiera się na publicznie dostępnie wiedzy. Pasywne działania rozpoznaczwsze obejmuą wiele działań na przykład
+  *Wyszukiwanie rekordów DNS domeny z publicznego serwera DNS.
+  *Sprawdzanie ogloszeń o pracę związanych z witryną dolecową.
+  *Czytnaie artykułow prasowych o formie docelowej.
+
+
+Rekonesans aktywny, nie może się odbywać dyskretnie. Wymaga bezpośredniego kontaktu z celem. 
+    Przykłady aktywnych działań rozpoznawczych obejmują:
+  *Połączenia z jednym z serwerów firmy, takich jak HTTP,FTP i SMTP.
+  *Dzownienie do firmy w celu uzyskania informacji. 
+  *Wchodzenie na teren firmy pod pozorem mechanika.
+  
+
+  Odpowiedzi na pytania:
+Pierwsze pytanie odpowiedź: P
+Drugie pytanie odpowiedź: A 
+Trzecie pytanie odpowiedź: A 
+
+
+    WHOIS
+
+WHOIS to protokół żądań i odpowiedzi. Serwer WHOIS nasłuchje na porcie TCP 43 żądań przychodzących. Rejestrator domen jest odpowiedzialny za prowadzenie rekordów
+WHOIS dla nazw domen, które dzierżawi. Serwer WHOIS odpowiada, podając różne informacje związane z żądaną domeną.
+  *Rejestrator: przez jakiego rejestratora została zajrestrowana nazwa domeny?
+  *Informacje kontaktowe rejestrującego.
+  *Daty utworzenia, aktualizacji i wygaśniecia.
+  *Serwer nazw: ktory serwer poprosić o rozwiązanie nazwy domeny?
+
+  Odpowiedzi na pytania:
+Pierwsze pytanie odpowiedź: 20180705
+Drugie pytanie odpowiedź: namecheap.com
+Trzecie pytnaie odpowiedź: CLOUDFLARE.COM
+
+
+    nslookup and dig
+
+Znajdź adres IP nazwy domeny za pomocą nslookup, co zonacz wyszukiwanie serwera nazw. Musisz wydać polcenie nslookup DOMAIN_NAME. Na przykład nslookup tryhackme.com
+Lub, bardziej ogólnie, możesz użyć nslookup OPTIONS DOMAIN_NAME SERVER. Te trzy głowne parametry to:
+
+  *OPTIONS zawiera typ zapytania. Na przykład możesz użyć A dla adresów IPv4 i AAAA dla adresów IPv6
+  *DOMAIN_NAME to nazwa domeny, której szukasz
+  *SERWER to serwer DNS, do którego chcesz wysłać zapytanie. Możesz wybrać dowolny lokalny lub publiczny serwer DNS do zapytnaia.
+
+Aby uzyskać bardziej zaawansowane zapytania DNS i dodatkowe funkcje, możesz użyć dig. Możemy użyć dig DOMAIN_NAME, ale aby określić typ rekodu, użylibyśmy
+dig DOMAIN_NAME TYPE. Opcjonalnie możemy wybrać serwer, za pomocą którego chcemy wysłać zapytanie dig @SERVER DOMAIN_NAME TYPE
+  *SERWER to serwer DNS, do którego chcesz wysłać zapytanie.
+  *DOMAIN_NAME to nazwa domeny, której szukasz.
+  *TYPE zaiera typ rekodu DNS.
+
+    Odpowiedź na pytanie:
+Możemy wykonać te zadanie na dwa sposoby, wykorzystując narzędzia, których właśnie się nauczyliśmy pierwszy sposób będzie to:
+nslookup -type=TXT thmlabs.com
+thmlabs.com     text = "THM{a5b83929888ed36acb0272971e438d78}"
+dig thmlabs.com TXT
+thmlabs.com.            81      IN      TXT     "THM{a5b83929888ed36acb0272971e438d78}"
+
+
+    DNSDumpster
+
+Narzędzia wyszukiwania DNS, takie jak nslookup i dig, nie mogą samodzielnie znależć subdomen. Domenę, którą sprawdzasz, może zawierać inne subdomeny, która
+może ujawnić wiele informacji o celu. 
+
+    Odpowiedź na pytanie:
+Pierwsze pytanie odpowiedź: remote
+    
+    Shodan.io
+Kiedy masz za zadanie przeprowadzić test penetracyjny dla określonych celów, w ramach pasywnej fazy rekonesany, usługa taka jak Shodan.io może być pomocna 
+w poznaniu róznych informacji o sieci klienta, bez aktywnego łączenia się z nią. 
+Shodan.io próbuje połączyć się z każdym urządzeniem dostępnym online, aby zbudować wyszukiwarkę połączonych „rzeczy”, w przeciwieństwie do wyszukiwarki 
+stron internetowych. Po otrzymaniu odpowiedzi zbiera wszystkie informacje związane z usługą i zapisuje je w bazie danych, aby można je było przeszukiwać. 
+
+    Odpowiedźi na pytania:
+Pierwsze pytanie odpowiedź: Germany
+Drugie pytanie odpowiedź: 8080
+Trzecie pytanie odpowiedź: 8888 
+    
+
