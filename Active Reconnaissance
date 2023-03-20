@@ -1,0 +1,8 @@
+Nauczmy sie korzystać z przeglądarki internetowej, aby zebrać więcej informacji o naszym celu. Ponadto omówimy użycie prostych narzędzi, takich jak
+ping, traceroute, telnet i nc do zbierania informacji o sieci, systmie i usługach.
+
+W tej sekcji skupimy się na aktywnym rozpoznaniu. Aktywny rekonesans rozpoczyna się od nawiązania bezpośrednich połączeń z maszyną docelową. Każde takie 
+połączenie może pozostawić w dziennkiach informacje pokazujące między innymi adres IP klienta, czas połączenia i czas trwania połączenia. 
+Jednak nie wszystkie połączenia są podejrzane. Możliwe jest aby Twój aktywny rekonesans wyglądał jak zwykła aktywność klienta. 
+
+W tym pokoju przeglądmay różne narzędzia, które są zwykle dołączne do większości systemów operacyjnych lub łatwo dostępne.
