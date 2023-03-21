@@ -1,0 +1,29 @@
+    Subnetworks
+  Odpowiedzi na pytania:
+1: 4
+2: N
+3: 4
+4: Y
+
+
+    Enumerating Targets 
+Musimy określić cele, które chcemy przeskanować. Generalnie możesz podać lista, zakres lub podsieć. 
+lista: MACHINE_IP scanme.nmap.org example.comprzeskanuje 3 adresy IP. 
+zakres: 10.11.12.15-20przeskanuje 6 adresów IP: 10.11.12.15, 10.11.12.16,… I 10.11.12.20. 
+podsieć: MACHINE_IP/30przeskanuje 4 adresy IP. 
+
+  Odpowiedzi na pytania:
+1: 10.10.12.8
+2: 6400
+
+    Discovering Live Hosts 
+ARP: ma jeden cel wysłanie ramki na adres rozgłoszeniowny w segmencie sieci i zapytanie komputera o konkretny adres IP, aby odpowiedzieć, podając swój adres MAC
+ICMP: używa typu 8(echo) o typu 0 (odpowiedź echa)
+
+    Odpowiedzi na pytannia:
+1:ARP REQUEST
+2:ARP RESPONSE
+3:1
+4:router
+5:computer5
+6:N
