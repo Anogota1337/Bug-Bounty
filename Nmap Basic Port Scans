@@ -1,0 +1,53 @@
+Następnym krokiem będzie sprawdzenie, które porty są otwarte i nasłuchują, a które są zamknięte. 
+
+    Porty TCP i UDP
+
+TCP,UDP używane są w celu zidentyfikowania usług sieciowych uruchamianych na tym hoście. 
+Uproszenie:
+1. Otwarty port wskazuje, że na tym porcie nasłuchuje jakaś usługa
+2. Port zamknięty wskazuje, że na tym porcie nie nasłuchuje żadna usługa.
+
+W praktycznych sytuacjach musimy wziąćpod uwagę wpływ zapór ogniowych. Na przykład port może być otwarty, ale fierwall może blokować pakirty.
+
+    Odpowiedzi na pytania:
+1:DNS
+2:SSH
+3:6
+4:Open
+
+    TCP Flags
+URG : Pilna flaga wskazuje, że podany pilny wskaźnik jest znaczący. Wskaźnik pilności wskazuje, że przychodzące dane są pilne i że segment TCP z ustawioną 
+
+flagą URG jest przetwarzany natychmiast, bez konieczności oczekiwania na poprzednio wysłane segmenty TCP.
+
+ACK : Flaga potwierdzenia wskazuje, że numer potwierdzenia jest znaczący. Służy do potwierdzania odbioru segmentu TCP .
+
+PSH : Flaga push z prośbą przez TCP . o niezwłoczne przekazanie danych do aplikacji
+
+RST : Flaga resetowania służy do resetowania połączenia. Inne urządzenie, takie jak zapora ogniowa, może wysłać go w celu rozdarcia protokołu TCP 
+połączenie. Ta flaga jest również używana, gdy dane są wysyłane do hosta, a po stronie odbierającej nie ma usługi, która mogłaby odpowiedzieć.
+
+SYN : Flaga synchronizacji jest używana do inicjowania TCP trójstronnego uzgadniania i synchronizowania numerów sekwencyjnych z innymi gospodarz. 
+Numer sekwencyjny należy ustawić losowo podczas nawiązywania połączenia TCP.
+
+FIN : Nadawca nie ma więcej danych do wysłania. 
+
+  Odpowiedzi na pytnaia
+1:RST
+2:SYN
+
+    Nmap Basic Port Scans
+1:110
+2:pop3
+
+    TCP SYN Scan 
+1:6667
+2:irc
+    UDP Scan
+1:53
+2:domain
+    Fine-Tuning Scope and Performance 
+1:-p5000-5500
+2:--min-parallelism=64
+3:-T0
+
