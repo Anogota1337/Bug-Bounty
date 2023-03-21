@@ -6,3 +6,50 @@ połączenie może pozostawić w dziennkiach informacje pokazujące między inny
 Jednak nie wszystkie połączenia są podejrzane. Możliwe jest aby Twój aktywny rekonesans wyglądał jak zwykła aktywność klienta. 
 
 W tym pokoju przeglądmay różne narzędzia, które są zwykle dołączne do większości systemów operacyjnych lub łatwo dostępne.
+
+
+    Web Browser
+Tutaj możemy się nieco dowiedzieć o narzędziach, które pomogą nam się przydać podczas rekonesansu. Oraz nieco jest powiedziane o narzędziach programistycznych.
+
+    Odpowiedź na pytanie:
+Pierwsze pytanie odpowiedź: 8
+
+
+    Ping 
+Głównym celem ping jest sprawdzenie, czy możesz połączyć się ze zdalnym system i czy zdaly system może się z tobą skontaktować. Czyli służy do sprawdzenia łączności.
+POlecnia ping możesz używać jako ping MACONE_IP lub ping HOSTNAME. 
+
+  Odpowiedzi na pytania:
+1: -s   man ping | grep size 
+2: 8 
+3: Y
+4: 10   ping -c MACHINE_IP
+
+    Tracerout
+Celem traceroute jest znalezienie adresów IP routerów lub przeszkoków, przez które przechodzi pakiet, przechodząc z twojego systemu do hosta docelowego.
+To polecenie ujawnia liczbę routerów między dwoma systemami. Wskazuje liczbę przeskoków (routerów( między twoim systemem a hostem docelowym. Warto pamiętać, że trasa
+pokonywana przez pakiet może się zmienić, ponieważ wiele routerów korzysta z protokołów dynamyczny, które dostosowują się do zmian sieci.
+
+  Odpowiedzi na pytania: Musiałem skorzystać z filmiku na yt ponieważ kompletnie się pogubiłem. Nie wiedziałem o co chodzi z Traceroute A,B.
+1: 172.67.69.208
+2: 104.26.11.229
+3: 26
+
+    Telnet
+Klient telnet opiera się na protkole TCP, możesz uzyć Telnet aby połączyć się z dowolną usługą i pobrać jej baner. telnet MACHINE_IP PORT.
+jeśli chcemy dowiedzieć się więcej o serwerze WWW na porcie 80. Łączymy się z serwerem na porcie 80, a następnie komunikujemy się za pomocą protokołu HTTP.
+wystarczy wydać GET / HTTP/1.1 Aby określić coś innego niż domyślna strona wystarczy dodać przykładowo GET /page.html HTTP/1.1, która poprosi o page.html 
+Aby uzyskać prawidłową odpowiedź, zamiast błedu, wprowadź jakąś wartość dla hosta host: example i naciśnij dwa razy eneter.
+
+  Odpowiedzi na pytania:
+1: Apache
+2: 2.4.10
+
+    Netcat
+Obsługuje zarówno protokoły TCP, jak i UDP. Może działać jako klient, który łączy się z portem nasłuchującyml alternatywnie może działa jako serwer nasłuchujący na wybranym
+porcie.
+
+   Odpowiedź na pytanie:
+1: 0.17
+
+
