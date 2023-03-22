@@ -1,0 +1,12 @@
+    TCP Null Scan, FIN Scan, and Xmas Scan 
+Skanowanie zerowe, nie ustawia żadnej flagi; wsyztkie cześć bitów jest jest ustawionych na zero. Możesz wybrać to skanowanie za pomocą -sN. Pakiet TCP bez 
+ustawionych flag nie wywoła żadnej odpowiedzi, gdy dotrze do otwartego portu. Dlatego z prespektywy Nmap wskazuje na to brak odpowiedzi w skanowaniu zerowym albo
+port jest otwarty, albo zapora sieciowa blokuje pakiety.
+
+
+
+
+
+
+
+
