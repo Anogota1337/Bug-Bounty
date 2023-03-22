@@ -63,8 +63,50 @@ nagłówki żądań wysłane do określonej domeny atakującego. Te nagłówki m
 2. Website Requests data form hacker-domain.thm instead of api.website.thm revealing the API Key.
   
 
+    ╠Odpowiedź na zadanie:
+https://website.thm/item/2?server=server.website.thm/flag?id=9&x=api 
+To jest nasz URL, który pomógł nam uzyskać fłagę.
+Server Requesting: https://server.website.thm/flag?id=9&x=api.website.thm/api/item?id=2
+Flaga: THM{SSRF_MASTER}
 
+Findking an SSRF
+Potencjalne luki SSRF można wykryć w aplikacjach internetowych na wiele różnych sposób. Oto przykład czterech.
+        Gdy pelny adres URL jest używany w parametrze na pasku adresu:
+    ╠ https://website.thm/form?server=http://server.website.thm/store
+        Ukryte w polu formularza:
+    ╠ value="http://server.website.thm/store">
+        Częsciowy adres URL, taki jak tylko nazwa hosta:
+    ╠ https://website.thm/form?server=api
+        A może tylko ścieżka adresu URL:
+    ╠ https://website.thm/form?dst=/forms/contact
 
+    ╠Odpowiedź na zadanie:
+1: requestbin.com
 
+Defeating Common SSRF Defenses 
+Można wdrożyć kontrole w swoich aplikacjach, aby upewnić się, że żądany zasób spełnia określone reguły. Zwykle istnieją dwa podejścia do tego, albo lista odmów
+albo lista dozwolonych.
 
+╠ Lista odmów. Lista odrzuconych to miejsce, w którym akceptowane są wszystkie żądania oprócz zasobów określonych na liście lub pasujących do określonego wzorca. 
+Aplikacja internetowa może wykorzystywać listę odmów w celu ochrony wrażliwych punktów końcowych, adresów IP lub domen przed dostępem publicznym,
+jednocześnie umożliwiając dostęp do innych lokalizacji. Konkretnym punktem końcowym do ograniczenia dostępu jest hot lokalny, który może zawierać dane
+dotyczące wydajności serwera lub inne poufne informacje, więc nazwy domen, takie jak host lokalny i 127.0.0.1 pojawią się na liście odrzuconyc. 
+Atakujący mogą ominąć listę odrzuconych, używając alternatywnych odwołań do hostów lokalnych, takich jak 0.0.0.0, 127.*.*.* lub subdomen, które mają rekod DNS
+który odpowiada adresowi IP 127.0.0.1 na przykład 127.0.0.1.nip.io
 
+╠Lista dozwolonych to miejsce, w którym wszytkie żądania są odrzucane, chyba że pojawiają się na liście lub pasują do określonego wzorca, takiego jak reguła,
+że adres URL użyty w parametrze musi zaczynać się http://website.thm. Osoba atakująca może szybko obejść tę regułe, tworząc subdomenę w nazwie domeny osoby
+atakującej, na przykład http://website.thm.attackers=domain.thm. Logika aplikacji pozwoliłaby teraz na to wejście i pozwoliła atakującemu kontrolować wewnąrzne
+żądanie HTTP
+
+╠Otwórz przekierowanie to punkt końcowy na serwerze, w którym odwiedzjący witrynę zostaje automatycznie przekierowany na inny adres witrny. Weźmy na przykład 
+link https://website.thm/link?url=https://tryhackme.com Ten punkt końcowy został utworzony w celu rejestrowania, ile razy odwiedzjący kliknęli ten link w celach 
+reklamowych/marketingowych. Ale wyobraź sobie, że istnieje potencjalna luka SSRF z rygorystycznymi regułami, które zezwalają tylko na dresy URL zaczynające się
+https://website.thm/ Osoba atakująca może wykorzystać powyższą funckję do przekierowania wewnętrzengo żądania HTTP do domeny weybranej przez osobę atakujące
+
+    ╠Odpowiedzi na zadania:
+1:Open Redirect
+2:169.254.169.254
+3:Allow List
+4:Deny List
+    
