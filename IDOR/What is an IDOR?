@@ -1,0 +1,37 @@
+    ╙Co to jest IDOR?
+IDOR oznacza Insecure Direct Object Reference i jest rodzajem luki w zabezpieczeniach kontroli dostpu
+Ten rodzaj luki w zabezpieczeniach może wsytąpić, gdy serwer WWW otrzymuje dane wejściowe dostarczone przez użytkownika w celu pobrania obiektów (plików, danych
+dokumentów) dane wejściowe zostały obdarzone zbyt dużym zaufaniem i nie są one sprawdzane po stronie serwera w celu potwierdzenia żądany obkiet należy do żądającego 
+go użytkownika.
+    ╙Przykład IDOR
+Klikamy zobacz witrynę a następnie sprawdzamy dokładnie każdy e-mail, jeśli przyjżmy się dokładniej możemy znaleść dla nas odpowiedni e-mail będzie to 
+shipping@onlinestore.thm, wchodzimy w tego mail i następnie jesteśmy proszeni o zmienie w adresie URL z 1234 na 1000. Po tych wszystkich krokoach otrzymujemy naszą 
+flagę: THM{IDOR-VULN-FOUND}
+
+    ╙Znajdowanie identyfikatorów IDOR w zakodowanych identyfikatorach 
+Zakodowane identyfikatory.
+Gdy przekazywanie danych ze strony na stronę za pomocą danych postów, ciągów zapytań lub cookie, twórcy stron internetowych często najpierw biorą surower dane i kodują
+to. Kodowanie gwarantuje, że odbierający serwer WWW będzie w stanie to zrobić zrozumieć treść. Kodowanie zmienia dane binarne na SCII ciąg powszechnie używający 
+a-z, A-Z,0-9 i = postać do wypełnienia. Najpopularniejszą techniką kodownia w sieci jest base64 kodowanie i zwykle może być dość łatwe do wykrycia.
+Możesz korzystać ze stron internetowych aby zdekodować ciąg, a następnie edytować dane i ponownie zakodować, a następnie ponownie przesłać żądanie sieciowe, aby 
+sprawdzić czy nastąpiła zmiana w odpowiedz.
+
+    ╙Znajdowanie identyfikatorów IDOR w zaszyfrowanych identyfikatorach 
+Warto umieści odkryte skóry za pośrednictwem usług internetowych.
+
+    ╙Znajdowanie identyfikatorów IDOR w nieprzewidywalnych identyfikatorach 
+Nieprzewidywalne identyfikatory
+Jeśli identyfikatora nie można wykryć przy użyciu powyższych metoda, co jest doskonała metodąwykrywanie identyfkatorów IDOR polega na utworzeniu dwóch kont i zamiane 
+numerw identyfikacyjnych między nimi. Jeśli możesz przeglądać treści innych użytkowników za pomocą ich identyfikatora numeru, będać nadal zalogowanym na innym koncie
+(lub w ogóle się nie zalogowałeś znalazłeś ważną lukę IDOR.
+
+    ╙Gdzie znajdują się identyfikatory IDOR
+Ten wrażliwy punkt końcowy, na który celujesz, nie zawsze może być czymś, co ty zobaczysz w pasku adresu. Może to być treść, która przeglądarka ładuje za pośrednictwem
+pliku żądania AJAX lub coś, do czego odwłuje się JS plik.
+
+
+    ╙Praktyczny przykład IDOR 
+Pierwszym naszym krokiem będzie utworzenie konta, następnie otworzyć narzędzie programistyczne i przejść do zakładki sieć, po odświeżeniu ujrzy się naszym oczą 
+customer?id=15, naszym cele zadania jest zmiana na id 1 i sprawdzenie nazwy użytkownika i następnie zmiany na id 3 sprawdzenie adresu e-mail więc klikamy na to a 
+następnie edytuj i wyślij ponownie podmienamy ID i w bardzo prosty sposób podajemy to czego od nas oczekują.
+ 
