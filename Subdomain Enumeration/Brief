@@ -1,1 +1,33 @@
+Wyliczanie subdomen to proces znajdowania prawidłowych subdomen dla domeny. Robimy to, aby rozszerzyć naszą powierzchnię ataku, aby spróbować odkryć więcej 
+potencjalnych słabych punktów.
+Zbadamy trzy różne metody wyliczania subdomen: Brute Force, OSINT i Virtual Host
+
+    ╚OSINT - Certyfikaty SSL/TLS
+Gdy certyfikat SSL/TLS jest tworzony dla domeny przez urząd certyfikacji, który bierze udział w tak zwanych "dziennikach przejrzystości certyfikatów (CT)".
+Są to publicznie dostępne logi każdego certyfikatu SSL/TLS utworzeonego dla Nazwa domeny. Celem dzienników Certificate Transparency jest zapobieganie używaniu 
+złośliwych i przypadkowo utworzonych certyfikatów. Możemy wykorzystać tę usługę na naszą korzyść, aby odkryć subdomeny należące do domeny, witrny takie jak
+https://crt.sh i https://ui.ctsearch.entrust.com/ui/ctsearchui oferują przeszukiwalną bazę danych certyfikatów, która pokazuje aktualne i historyczne wyniki.
+
+    ╚OSINT - Wyszukiwarki
+Wyszukiwarki 
+Korzystanie z zaaswansowanych metod wyszukiwania w witrynach takich jak Google.
+
+    ╚DNS Bruteforce
+Wyliczanie BruteForce DNS to metoda wypróbowywania dziesiątek, setek, tysięcy, a nawet milionów różnych możliwych subdomen z prefefiniowanej listy powszechnie 
+używanych subdomen. Ponieważ ta metoda wymaga wielu żądań, automatyzujmey ją za pomocą narzędzi, które przypiszają ten proces. W tym przypadku
+używamy do tego narzędzia o nazwie dnsrecon. K
+
+    ╚OSINT - Sublist3r
+Aby przyspieszyć proces wykrywania subdomen OSINT, możemy zautomatyzować powyższe metody za pomocą narzędzi takich jak Sublist3r.
+    
+
+    ╚Wirtualne hosty
+Niektóre subdomeny nie zawsze są hostowane w publicznie dostępnych wynikach DNS, takich jak rozwojowe wersji aplikacji internetowej lub portlae administracyjne 
+Zamiast tego rekod DNS mógłby być przechowywany na prywatnym serwerze DNS lub zapisany na komputerach dewelopera w plik /etc/hosts (lub pliku
+c:\windows\system32\drivers\etc\hosts dla użytkowników systemu Windows) który odworowuje nazwy domen na adresy IP. 
+
+Ponieważ serwery sieciowe mogą hostować wiele witryn internetowych z jednego serwera, gdy witryna internetowa jest żądane do klienta, serwer wie, którą witrynę 
+chce klient z nagłówka Host. Możemy wykorzystać ten nagłówek host, wprowadzając w nim zmiany i monitorując odpowiedź, aby sprawdzić, czy odkryliśmy nową stronę 
+internetową
+
 
