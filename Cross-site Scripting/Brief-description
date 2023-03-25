@@ -1,1 +1,3 @@
+Luka XSS ma miejsce wtedy gdy, atakujący może wykonywać niestandardowe skrypty w przeglądarce ofiary. Jeśli aplikacja nie jest w stanie rozróżnić wprowadzanych
+danych i prawidłowego kodu tworzącego strone internetową, atakujący może wstrzyknąć własny kod w strony przeglądane przez innych użytkowników.
 
