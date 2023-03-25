@@ -1,0 +1,6 @@
+Pierwszym naszym krokiem będzie znalezienie funkcji sprawdzenia zapasów. Wystarczy pod pierwszym lepszym obrazkiem nacisnąć View Detal. Wchodząć 
+i scrollując na sam dół zobaczymy sprawdzenie zasobów, więc musimy przechwycić to żądanie w burp. Jeśli już przechwycimy żądanie zobaczymy stockApi.
+Teraz wystarczy zmienić te rządanie na http://localhost/admin i naszym zadaniem było usunięcie konta carlos, więc naciksmay obok delete i usuwamy.
+Napotkamy problem:  Admin interface only available if logged in as an administrator, or if requested from loopback 
+Przechwyćmy rządanie raz jeszcze i teraz spróbujmy wykorzystać żądanie które widzieliśmy http://localhost/admin/delete?username=carlos
+To rządanie widzieliśmy jak naciskaliśmy carlos delete.
